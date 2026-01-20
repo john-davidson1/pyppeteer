@@ -1,28 +1,46 @@
+default_language_version:
+  python: python3.10
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.4.0
-    hooks:
-      - id: trailing-whitespace
-      - id: end-of-file-fixer
-      - id: check-yaml
-      - id: check-toml
-      - id: check-builtin-literals
-      - id: debug-statements
-      - id: check-added-large-files
-  - repo: https://github.com/asottile/seed-isort-config
-    rev: v2.1.1
-    hooks:
-      - id: seed-isort-config
-        # if we don't specify these the seeder will intermittently include
-        # these as 'known third parties' which messes with our diffs
-        args: ['--application-directories', './pyppeteer:./tests']
-  - repo: https://github.com/timothycrosley/isort
-    rev: 4.3.21
-    hooks:
-      - id: isort
-        additional_dependencies: [toml]
-  - repo: https://github.com/psf/black
-    rev: stable
-    hooks:
-      - id: black
-        language_version: python3
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.6.0
+  hooks:
+  - id: trailing-whitespace
+  - id: end-of-file-fixer
+    exclude: CHANGELOG\.md
+  - id: check-yaml
+  - id: check-toml
+  - id: check-added-large-files
+    args: ["--maxkb=1500"]
+  - id: check-case-conflict
+  - id: check-json
+  - id: check-merge-conflict
+  - id: debug-statements
+  - id: requirements-txt-fixer
+    files: ^requirements(-dev)?.txt$
+- repo: https://github.com/charliermarsh/ruff-pre-commit
+  rev: 'v0.4.3'
+  hooks:
+  - id: ruff
+    args: [--fix, --exit-non-zero-on-fix]
+  - id: ruff-format
+- repo: https://github.com/pycqa/bandit
+  rev: "1.7.8"
+  hooks:
+  - id: bandit
+    args: ["-r", "-ll", "-ii"]
+    exclude: ^tests/
+- repo: https://github.com/asottile/pyupgrade
+  rev: v3.15.2
+  hooks:
+  - id: pyupgrade
+    args: ["--py310-plus"]
+- repo: local
+  hooks:
+  - id: mypy
+    name: mypy
+    entry: mypy --config pyproject.toml
+    types: [python]
+    language: system
+    require_serial: true
+    pass_filenames: false
+    exclude: ^(\.|venv/)

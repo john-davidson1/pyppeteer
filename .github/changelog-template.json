@@ -1,0 +1,12 @@
+{
+    "sort": "DESC",
+    "template": "#{{UNCATEGORIZED}}",
+    "empty_template": "No matching PRs for this tag",
+    "pr_template": "* #{{TITLE}} - #{{AUTHOR}} ([##{{NUMBER}}](#{{URL}}))",
+    "transformers": [
+        {
+            "pattern": "^\\[([A-Z]+-\\d+)\\]",
+            "target": "[[$1](https://hungryroot.atlassian.net/browse/$1)]"
+        }
+    ]
+}

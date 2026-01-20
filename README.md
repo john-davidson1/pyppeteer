@@ -1,5 +1,6 @@
-### Attention: This repo is unmaintained and has been outside of minor changes for a long time. Please consider [playwright-python](https://github.com/microsoft/playwright-python) as an alternative. 
-If you are interested in maintaining this, please contact [me](https://github.com/Mattwmaster58)
+### This is a forked version of [pyppeteer/pyppeteer](https://github.com/pyppeteer/pyppeteer) for version compabilitiy with Hungryroot. We will move off of this to Playwright and deprecate this repo in the future.
+
+Original repository readme:
 
 pyppeteer
 ==========
