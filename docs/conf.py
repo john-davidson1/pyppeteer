@@ -46,7 +46,7 @@ extensions = [
     'sphinx.ext.viewcode',
     # 'sphinx_autodoc_typehints',
     'sphinxcontrib.asyncio',
-    'm2r',
+    'm2r2',
 ]
 
 primary_domain = 'py'
